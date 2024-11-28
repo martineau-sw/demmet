@@ -1,0 +1,11 @@
+{
+  "name": "demmet",
+  "version": "1.0.0",
+  "description": "Functions to create DOM nodes using emmet strings.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Seth Martineau",
+  "license": "MIT"
+}
