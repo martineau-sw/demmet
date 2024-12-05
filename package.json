@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Functions to create DOM nodes using emmet strings.",
   "main": "index.js",
-  "scripts": {
-  },
+  "type": "module",
+  "scripts": {},
   "keywords": [],
   "author": "Seth Martineau",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "a-priori": "github:martineau-sw/a-priori"
+  }
 }
