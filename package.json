@@ -9,6 +9,7 @@
   "author": "Seth Martineau",
   "license": "MIT",
   "devDependencies": {
-    "a-priori": "github:martineau-sw/a-priori"
+    "a-priori": "github:martineau-sw/a-priori",
+    "jsdom": "^25.0.1"
   }
 }
