@@ -2,12 +2,13 @@ import { JSDOM } from 'jsdom';
 
 const jsdom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
 const document = jsdom.window.document;
+const HTMLElement = jsdom.window.HTMLElement;
 
 function parseEmmetToObject(str) {
 
   const regex = new RegExp(
     `^(?<tag>[a-z]+)?` +                // tag
-    `(?<attributes>\\[[a-z=" ]+\\])?` + // attributes
+    `(?<attributes>\\[[a-z-0-9=" ]+\\])?` + // attributes
     `(?<id>#[a-z-0-9]+)?` +             // id
     `(?<classes>(?:\\.[a-z-0-9]+)*)?` + // classes
     `(?<textContent>{[\\s\\S]+})?`      // text content
@@ -41,31 +42,29 @@ function classListFromString(classString) {
 }
 
 function elementFromObject(elementObject) {
-  const element = document.createElement(elementObject.tag);
-
+  const node = document.createElement(elementObject.tag);
 
   if (elementObject.attributes !== undefined) {
     Object.keys(elementObject.attributes).forEach(key => {
-      element.setAttribute(key, elementObject.attributes[key]);
+      node.setAttribute(key, elementObject.attributes[key]);
     });
   }
-  
 
-  element.id = elementObject.id;
+  node.id = elementObject.id ? elementObject.id : '';
 
   if (elementObject.classes !== undefined) {
     elementObject.classes.forEach(cls => {
-      element.classList.add(cls);
+      node.classList.add(cls);
     });
   }
 
-  element.textContent = elementObject.textContent;
-
-  return element;
+  node.textContent = elementObject.textContent;
+  return node;
 }
 
 function create(emmetString) {
+
   return elementFromObject(parseEmmetToObject(emmetString))
 }
 
-export { parseEmmetToObject, create };
+export { parseEmmetToObject, create, document, HTMLElement };
